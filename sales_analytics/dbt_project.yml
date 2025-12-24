@@ -32,8 +32,11 @@ models:
   sales_analytics:
     
     staging:
+      +schema: STAGING
       +materialized: view
 
     marts:
       +schema: ANALYTICS
       +materialized: table
+
+# We intentionally modeled a focused star schema around sales analytics. Supporting datasets like payments, reviews, and geolocation were kept separate to avoid grain mismatch and metric distortion, and can be exposed via separate facts when needed
